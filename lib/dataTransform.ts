@@ -3,7 +3,7 @@ import qs from "query-string";
 
 export const useAnalyticsData = (rawData: SaleType[]) => {
   //lineChart uses
-  const finalData = rawData.reduce<Record<string, number>>((result, item) => {
+  const dataByMonth = rawData.reduce<Record<string, number>>((result, item) => {
     const month = new Date(item.date).toISOString().slice(0, 7);
     if (!result[month]) {
       result[month] = 0;
@@ -11,6 +11,18 @@ export const useAnalyticsData = (rawData: SaleType[]) => {
     result[month] += item.totalPrice;
     return result;
   }, {});
+
+  const dataByDay = rawData.reduce<Record<string, number>>((result, item) => {
+    const day = new Date(item.date).toISOString().slice(5, 10);
+    if (!result[day]) {
+      result[day] = 0;
+    }
+    result[day] += item.totalPrice;
+    return result;
+  }, {});
+
+  const lineChartData =
+    Object.keys(dataByMonth).length < 3 ? dataByDay : dataByMonth;
 
   // doughnutChart uses
   const doughnutData = rawData.reduce<Record<string, number>>(
@@ -54,7 +66,7 @@ export const useAnalyticsData = (rawData: SaleType[]) => {
   const totalOrders = rawData.length;
 
   return {
-    lineChartData: finalData,
+    lineChartData,
     doughnutChartData,
     totalRevenue,
     totalQuantities,

@@ -40,9 +40,11 @@ const LineChart = ({ data, xTicks, title }: LineChartProps) => {
         label: "Total Revenue",
         data: data,
         borderColor: "rgb(75, 55, 147)",
-        backgroundColor: "rgba(75, 55, 147, 0.4)",
+        backgroundColor: "rgba(75, 55, 147, 0.2)",
         borderWidth: 2,
         fill: true,
+        pointRadius: 0,
+        hitRadius: 10,
       },
     ],
   };

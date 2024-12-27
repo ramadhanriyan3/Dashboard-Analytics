@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
@@ -30,11 +30,20 @@ interface OverviewFilterProps {
 
 const OverviewFilter = ({ handleCancel }: OverviewFilterProps) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const searchQuery = qs.parse(searchParams.toString(), {
+    types: {
+      product: "string[]",
+    },
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      products: [],
+      products: searchQuery.product ? (searchQuery.product as string[]) : [],
+      dateStart: searchQuery.start as string,
+      dateEnd: searchQuery.end as string,
     },
   });
 
