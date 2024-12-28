@@ -11,7 +11,7 @@ import { Input } from "./ui/input";
 import { ProductFilter } from "./productFilter";
 import { Button } from "./ui/button";
 
-import { categoryList } from "@/lib/dataDummy";
+import { categoryList } from "@/lib/data-dummy/salesData";
 
 const formSchema = z.object({
   dateStart: z.string({ required_error: "Please Select a date" }).date(),

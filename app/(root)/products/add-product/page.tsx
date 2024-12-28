@@ -4,7 +4,7 @@ import Image from "next/image";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { productList } from "@/lib/data-dummy/productsData";
 import {
@@ -52,10 +52,6 @@ const ProductIdPage = ({ params }: { params: { id: string } }) => {
     console.log(data);
     router.push("/products");
   };
-
-  if (!product.length) {
-    redirect("/not-found");
-  }
 
   return (
     <div className="w-full drop-shadow-sm rounded-md p-x-2 md:px-4 gap-x-5 flex flex-col sm:flex-row">

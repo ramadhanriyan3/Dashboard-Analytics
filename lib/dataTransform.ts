@@ -1,4 +1,4 @@
-import { SaleType } from "./dataDummy";
+import { SaleType } from "./data-dummy/salesData";
 import qs from "query-string";
 
 export const useAnalyticsData = (rawData: SaleType[]) => {

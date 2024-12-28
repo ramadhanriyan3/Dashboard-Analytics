@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Pencil, Trash2, ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 
-import { ProductType } from "@/lib/dataDummy";
+import { ProductType } from "@/lib/data-dummy/productsData";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +19,13 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export const productColumns: ColumnDef<ProductType>[] = [
+  {
+    header: "No",
+    cell: ({ row }) => {
+      const number = row.index + 1;
+      return <p className="text-center">{number}</p>;
+    },
+  },
   {
     accessorKey: "imageUrl",
     header: "",

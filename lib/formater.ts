@@ -5,3 +5,14 @@ export const growthFormatter = (num: number) => {
     minimumFractionDigits: 0,
   }).format(num);
 };
+
+export const formatCurrency = (
+  value: number,
+  currency: string,
+  locale: string = "en-US"
+): string => {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: currency,
+  }).format(value);
+};

@@ -2,6 +2,8 @@
 
 import { SlidersHorizontal } from "lucide-react";
 import qs from "query-string";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import {
   Dialog,
@@ -11,10 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import DateRangeFilter from "@/components/dateRangeFilter";
 import ScoreCard from "@/components/scoreCard";
-import { sales, SaleType } from "@/lib/dataDummy";
+import { sales, SaleType } from "@/lib/data-dummy/salesData";
 import OverviewFilter from "@/components/overviewFilter";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import LineChart from "@/components/chart/LineChart";
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import { useAnalyticsData } from "@/lib/dataTransform";

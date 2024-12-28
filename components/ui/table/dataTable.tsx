@@ -12,6 +12,9 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { Plus } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
   Table,
@@ -27,14 +30,25 @@ import { Input } from "../input";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  columnFilterName: string;
+  placeholderFilter: string;
+  isEditable?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  columnFilterName,
+  placeholderFilter,
+  isEditable,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
+  const pathname = usePathname();
+  const path = pathname.split("/")[1];
+  const newPath = path.slice(0, path.length - 1);
+  console.log(path);
 
   const table = useReactTable({
     data,
@@ -53,15 +67,29 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-start justify-between py-4">
         <Input
-          placeholder="Filter Products..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          placeholder={placeholderFilter}
+          value={
+            (table.getColumn(columnFilterName)?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table
+              .getColumn(columnFilterName)
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
+        {isEditable && (
+          <Link
+            className="flex gap-x-1 text-white text-sm items-center bg-primary  p-2 rounded-md hover:bg-primary/90"
+            href={`${pathname}/add-${newPath}`}
+          >
+            <Plus className="aspect-square w-4 text-white " />
+            Add {newPath}
+          </Link>
+        )}
       </div>
       <div className="rounded-md border">
         <Table>
@@ -126,7 +154,6 @@ export function DataTable<TData, TValue>({
           Previous
         </Button>
         <Button
-          variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
