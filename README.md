@@ -2,6 +2,9 @@
 
 Dashboard Analytics is a web application for analyzing sales data through an interactive and visually appealing dashboard.
 
+**Note:** You can visit [https://dashboard-analytics-weld.vercel.app/](https://dashboard-analytics-weld.vercel.app/) for explore.
+
+
 ## Features
 - **Real-time Data Visualization**: Charts and graphs to track sales trends.
 - **Filter and Search**: Narrow down data by date or product,.
