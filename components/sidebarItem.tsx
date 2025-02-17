@@ -28,7 +28,7 @@ const SidebarItem = ({ href, label, icon: Icon }: SidebarItemProps) => {
       <Link href={href} className="flex items-center gap-x-2">
         <Icon className={`w-6 h-6 shrink-0 transition-all`} aria-hidden />
         <p
-          className={`-translate-x-1 lg:translate-x-0 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 lg:opacity-100 transition-all ease-in-out  w-0 group-hover:w-full lg:w-full h-5 overflow-hidden`}
+          className={`-translate-x-1 xl:translate-x-0 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 xl:opacity-100 transition-all ease-in-out  w-0 group-hover:w-full xl:w-full h-5 overflow-hidden`}
         >
           {label}
         </p>

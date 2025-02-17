@@ -7,6 +7,5 @@ export const getGrowth = (now: number, prev: number) => {
     result = (now - prev) / prev;
   }
 
-  console.log({ result, now, prev });
   return result;
 };

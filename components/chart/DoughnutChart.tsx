@@ -52,6 +52,7 @@ const DoughnutChart = ({ labels, data, title }: DoughnutChartProps) => {
 
   const doughnutOptions = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       colors: {
         enabled: true,

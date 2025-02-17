@@ -742,22 +742,22 @@ export const sales = sortSales(salesData);
 export const categoryList = [
   {
     id: "c1",
-    values: "Laptop",
+    value: "Laptop",
     label: "Laptop",
   },
   {
     id: "c2",
-    values: "Smartphone",
+    value: "Smartphone",
     label: "Smartphone",
   },
   {
     id: "c3",
-    values: "Smartwatch",
+    value: "Smartwatch",
     label: "Smartwatch",
   },
   {
     id: "c4",
-    values: "Headphone",
+    value: "Headphone",
     label: "Headphone",
   },
 ];

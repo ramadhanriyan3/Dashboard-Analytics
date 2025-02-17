@@ -14,6 +14,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import StatusBadge from "@/components/statusBadge";
 
 export const orderColumn: ColumnDef<OrderType>[] = [
   {
@@ -81,30 +82,23 @@ export const orderColumn: ColumnDef<OrderType>[] = [
     header: "Payment Status",
     cell: ({ row }) => {
       const value = row.original.paymentStatus;
-      const getColor = (status: string) => {
-        let color: string;
-        switch (status) {
-          case "Paid":
-            color = "bg-[#28A745]/80";
-            break;
-          case "Unpaid":
-            color = "bg-[#DC3545]/80";
-            break;
-          case "Refunded":
-            color = "bg-[#FFC107]/80";
-            break;
-          default:
-            color = "bg-[#6C757D]/80";
-        }
 
-        return color;
-      };
-      const color = getColor(value);
-      return (
-        <p className={`py-[1px] px-1 ${color} rounded-sm text-white w-fit`}>
-          {value}
-        </p>
-      );
+      let color: string;
+      switch (value) {
+        case "Paid":
+          color = "bg-[#28A745]/80";
+          break;
+        case "Unpaid":
+          color = "bg-[#DC3545]/80";
+          break;
+        case "Refunded":
+          color = "bg-[#FFC107]/80";
+          break;
+        default:
+          color = "bg-[#6C757D]/80";
+      }
+
+      return <StatusBadge status={value} color={color} />;
     },
   },
   {
@@ -112,33 +106,25 @@ export const orderColumn: ColumnDef<OrderType>[] = [
     header: "Delivary Status",
     cell: ({ row }) => {
       const value = row.original.deliveryStatus;
-      const getColor = (status: string) => {
-        let color: string;
-        switch (status) {
-          case "Shipped":
-            color = "bg-[#007BFF]/80";
-            break;
-          case "In Transit":
-            color = "bg-[#FFC107]/80";
-            break;
-          case "Delivered":
-            color = "bg-[#28A745]/80";
-            break;
-          case "Returned":
-            color = "bg-[#DC3545]/80";
-            break;
-          default:
-            color = "bg-[#6C757D]/80";
-        }
+      let color: string;
+      switch (value) {
+        case "Shipped":
+          color = "bg-[#007BFF]/80";
+          break;
+        case "In Transit":
+          color = "bg-[#FFC107]/80";
+          break;
+        case "Delivered":
+          color = "bg-[#28A745]/80";
+          break;
+        case "Returned":
+          color = "bg-[#DC3545]/80";
+          break;
+        default:
+          color = "bg-[#6C757D]/80";
+      }
 
-        return color;
-      };
-      const color = getColor(value);
-      return (
-        <p className={`py-[1px] px-1 ${color} rounded-sm text-white w-fit`}>
-          {value}
-        </p>
-      );
+      return <StatusBadge status={value} color={color} />;
     },
   },
   {
@@ -146,33 +132,25 @@ export const orderColumn: ColumnDef<OrderType>[] = [
     header: "Status",
     cell: ({ row }) => {
       const value = row.original.status;
-      const getColor = (status: string) => {
-        let color: string;
-        switch (status) {
-          case "Pending":
-            color = "bg-[#FFC107]/80";
-            break;
-          case "Processing":
-            color = "bg-[#007BFF]/80";
-            break;
-          case "Completed":
-            color = "bg-[#28A745]/80";
-            break;
-          case "Cancelled":
-            color = "bg-[#DC3545]/80";
-            break;
-          default:
-            color = "bg-[#6C757D]/80";
-        }
+      let color: string;
+      switch (value) {
+        case "Pending":
+          color = "bg-[#FFC107]/80";
+          break;
+        case "Processing":
+          color = "bg-[#007BFF]/80";
+          break;
+        case "Completed":
+          color = "bg-[#28A745]/80";
+          break;
+        case "Cancelled":
+          color = "bg-[#DC3545]/80";
+          break;
+        default:
+          color = "bg-[#6C757D]/80";
+      }
 
-        return color;
-      };
-      const color = getColor(value);
-      return (
-        <p className={`py-[1px] px-1 ${color} rounded-sm text-white w-fit`}>
-          {value}
-        </p>
-      );
+      return <StatusBadge status={value} color={color} />;
     },
   },
   {

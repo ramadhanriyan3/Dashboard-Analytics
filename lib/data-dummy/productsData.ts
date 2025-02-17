@@ -47,3 +47,10 @@ export const productList = [
     updatedAt: "2024-09-02T15:00:00Z",
   },
 ];
+
+export const products = [
+  { id: "C1", name: "Smartphone", value: "smartphone" },
+  { id: "C2", name: "Laptop", value: "laptop" },
+  { id: "C3", name: "Headphone", value: "headphone" },
+  { id: "C4", name: "Smartwatch", value: "smartwatch" },
+];

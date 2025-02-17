@@ -9,7 +9,7 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
       <Sidebar />
       <Navbar />
       <Suspense>
-        <div className="ml-[90px] lg:ml-[280px] mr-4 pt-20 ">{children}</div>
+        <div className="ml-[90px] xl:ml-[280px] mr-4 pt-20 ">{children}</div>
       </Suspense>
     </div>
   );

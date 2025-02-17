@@ -14,7 +14,7 @@ import {
 import DateRangeFilter from "@/components/dateRangeFilter";
 import ScoreCard from "@/components/scoreCard";
 import { sales, SaleType } from "@/lib/data-dummy/salesData";
-import OverviewFilter from "@/components/overviewFilter";
+import OverviewFilter from "@/components/form/overviewFilter";
 import LineChart from "@/components/chart/LineChart";
 import DoughnutChart from "@/components/chart/DoughnutChart";
 import { useAnalyticsData } from "@/lib/dataTransform";
@@ -95,8 +95,6 @@ export default function Home() {
 
   const previousData = sales.filter(previousUsesData);
 
-  console.log({ now: filteredData.length, prev: previousData.length });
-
   const {
     lineChartData,
     doughnutChartData,
@@ -113,47 +111,52 @@ export default function Home() {
 
   return (
     <div className="w-full h-full bg-transparent flex flex-col gap-y-5">
-      <div className="bg-white p-4 w-full rounded-md flex items-center justify-between">
+      <div className="bg-white p-1 md:p-4 w-full rounded-md flex items-center justify-between">
         <DateRangeFilter />
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogTrigger>
+          <DialogTrigger asChild>
             <div className="p-1 border border-primary rounded-md">
-              <SlidersHorizontal className="text-primary " />
+              <SlidersHorizontal className="text-primary w-4 h-4 " />
             </div>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="w-full">
             <DialogTitle></DialogTitle>
             <OverviewFilter handleCancel={onCancel} />
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex flex-col sm:flex-row gap-y-2  gap-x-4 items-center justify-between w-full">
-        <ScoreCard
-          label="Total Revenue"
-          total={totalRevenue}
-          growth={getGrowth(totalRevenue, previousTotalRevenue)}
-          isCurency
-        />
-        <ScoreCard
-          label="Total Sales"
-          total={totalQuantities}
-          growth={getGrowth(totalQuantities, previousTotalQuantities)}
-        />
-        <ScoreCard
-          label="Total Order"
-          total={totalOrders}
-          growth={getGrowth(totalOrders, previousTotalOrders)}
-        />
+      <div className="flex flex-col lg:flex-row gap-y-2  gap-x-4 items-center justify-between w-full">
+        <div className="flex justify-between space-x-4 w-full">
+          <ScoreCard
+            label="Total Revenue"
+            total={totalRevenue}
+            growth={getGrowth(totalRevenue, previousTotalRevenue)}
+            isCurency
+          />
+          <ScoreCard
+            label="Total Sales"
+            total={totalQuantities}
+            growth={getGrowth(totalQuantities, previousTotalQuantities)}
+          />
+        </div>
+        <div className="flex justify-between space-x-4 w-full">
+          <ScoreCard
+            label="Total Order"
+            total={totalOrders}
+            growth={getGrowth(totalOrders, previousTotalOrders)}
+          />
+          <ScoreCard label="Best Seller Product" bestProduct="Smartphone" />
+        </div>
       </div>
-      <div className="w-full flex flex-col md:flex-row gap-y-4 md:gap-x-5">
-        <div className="w-full  bg-white rounded-lg lg:p-6 p-4">
+      <div className="w-full  flex flex-col md:flex-row gap-y-4 md:gap-x-5">
+        <div className="w-full min-w-0 flex bg-white rounded-lg lg:p-6 p-4 overflow-auto">
           <LineChart
             data={Object.values(lineChartData)}
             xTicks={Object.keys(lineChartData)}
             title={"Total Revenue"}
           />
         </div>
-        <div className="w-fit  bg-white rounded-lg lg:p-6 p-4">
+        <div className="w-full md:max-w-fit min-w-0 flex justify-center  bg-white rounded-lg lg:p-6 p-4">
           <DoughnutChart
             data={Object.values(doughnutChartData)}
             labels={Object.keys(doughnutChartData)}

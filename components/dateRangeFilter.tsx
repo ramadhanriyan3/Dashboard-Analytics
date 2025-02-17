@@ -21,13 +21,18 @@ const DateRangeFilter = () => {
 
   const handleChange = (value: string) => {
     const query = (values: { start: string; end: string }) =>
-      qs.stringifyUrl({
-        url: url,
-        query: {
-          start: values.start,
-          end: values.end,
+      qs.stringifyUrl(
+        {
+          url: url,
+          query: {
+            start: values.start,
+            end: values.end,
+          },
         },
-      });
+        {
+          sort: false,
+        }
+      );
 
     if (value === "last-year") {
       router.push(query(lastYear));
@@ -51,7 +56,7 @@ const DateRangeFilter = () => {
         <div className="flex gap-x-1 items-center">
           <RadioGroupItem value="last-year" id="year" />
           <label
-            className="text-xs md:text-sm text-muted-foreground"
+            className="text-[10px] md:text-sm text-muted-foreground"
             htmlFor="year"
           >
             Last Year
@@ -60,7 +65,7 @@ const DateRangeFilter = () => {
         <div className="flex gap-x-1 items-center">
           <RadioGroupItem value="last-month" id="month" />
           <label
-            className="text-xs md:text-sm text-muted-foreground"
+            className="text-[10px] md:text-sm text-muted-foreground"
             htmlFor="month"
           >
             Last month
@@ -69,7 +74,7 @@ const DateRangeFilter = () => {
         <div className="flex gap-x-1 items-center">
           <RadioGroupItem value="last-week" id="week" />
           <label
-            className="text-xs md:text-sm text-muted-foreground"
+            className="text-[10px] md:text-sm text-muted-foreground"
             htmlFor="week"
           >
             Last week
